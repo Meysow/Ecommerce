@@ -66,7 +66,8 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
         uploadPreset='ypdxkvdi'
       >
         {({ open }) => {
-          const onClick = () => {
+          const onClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+            e.preventDefault();
             open();
           };
           return (
