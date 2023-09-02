@@ -66,7 +66,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
         uploadPreset='ypdxkvdi'
       >
         {({ open }) => {
-          const onClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+          const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
             e.preventDefault();
             open();
           };
@@ -75,7 +75,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
               type='button'
               disabled={disabled}
               variant='secondary'
-              onClick={onClick}
+              onClick={handleOnClick}
             >
               <ImagePlusIcon className='w-4 h-4 mr-2' />
               Upload an Image
