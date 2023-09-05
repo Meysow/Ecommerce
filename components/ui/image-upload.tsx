@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { ImagePlusIcon, Trash } from 'lucide-react';
 import { CldUploadWidget } from 'next-cloudinary';
+import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import { ImagePlus, Trash } from 'lucide-react';
 
 interface ImageUploadProps {
   disabled?: boolean;
@@ -14,23 +14,18 @@ interface ImageUploadProps {
   value: string[];
 }
 
-export const ImageUpload: React.FC<ImageUploadProps> = ({
-  disabled,
-  onChange,
-  onRemove,
-  value,
-}) => {
-  const [mounted, setMounted] = useState(false);
+const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove, value }) => {
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
   }, []);
 
   const onUpload = (result: any) => {
     onChange(result.info.secure_url);
   };
 
-  if (!mounted) {
+  if (!isMounted) {
     return null;
   }
 
@@ -47,15 +42,15 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                 type='button'
                 onClick={() => onRemove(url)}
                 variant='destructive'
-                size='icon'
+                size='sm'
               >
-                <Trash className='w-4 h-4' />
+                <Trash className='h-4 w-4' />
               </Button>
             </div>
             <Image
               fill
               className='object-cover'
-              alt='image'
+              alt='Image'
               src={url}
             />
           </div>
@@ -63,21 +58,21 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
       </div>
       <CldUploadWidget
         onUpload={onUpload}
-        uploadPreset='ypdxkvdi'
+        uploadPreset='Dashboard'
       >
         {({ open }) => {
-          const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-            e.preventDefault();
+          const onClick = () => {
             open();
           };
+
           return (
             <Button
               type='button'
               disabled={disabled}
               variant='secondary'
-              onClick={handleOnClick}
+              onClick={onClick}
             >
-              <ImagePlusIcon className='w-4 h-4 mr-2' />
+              <ImagePlus className='h-4 w-4 mr-2' />
               Upload an Image
             </Button>
           );
@@ -86,3 +81,5 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
     </div>
   );
 };
+
+export default ImageUpload;
