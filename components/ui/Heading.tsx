@@ -3,6 +3,8 @@ interface HeadingProps {
   description: string;
 }
 
+//renamed with a minucule first letter
+
 export const Heading: React.FC<HeadingProps> = ({ title, description }) => {
   return (
     <div>
