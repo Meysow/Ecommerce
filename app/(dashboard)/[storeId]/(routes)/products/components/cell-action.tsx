@@ -1,7 +1,7 @@
 'use client';
 
 import axios from 'axios';
-import { Copy, FileEdit, MoreHorizontal, Trash } from 'lucide-react';
+import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -71,7 +71,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             <Copy className='mr-2 h-4 w-4' /> Copy Id
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/products/${data.id}`)}>
-            <FileEdit className='mr-2 h-4 w-4' /> Update
+            <Edit className='mr-2 h-4 w-4' /> Update
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
             <Trash className='mr-2 h-4 w-4' /> Delete
